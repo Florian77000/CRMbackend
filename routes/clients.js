@@ -10,4 +10,24 @@ router.get('/', (req, res) => {
     })
 });
 
+router.get('/:id', (req,res) => {
+    const id = req.params.id;
+    Client.findById(id).then((data) => {
+        res.json({result:true, data})
+    })
+});
+
+router.post('/add', (req,res) => {
+    const newClient = new Client ({
+        name:req.body.name,
+        phone : req.body.phone,
+        city:req.body.city,
+        cat:req.body.cat,
+    })
+    newClient.save().then(() => {
+        res.json({result:true})
+    })
+})
+
 module.exports = router;
+

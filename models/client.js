@@ -1,4 +1,3 @@
-const { ServerDescriptionChangedEvent } = require('mongodb');
 const mongoose = require('mongoose');
 
 const clientSchema = mongoose.Schema({
