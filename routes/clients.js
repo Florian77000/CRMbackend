@@ -21,13 +21,25 @@ router.post('/add', (req,res) => {
     const newClient = new Client ({
         name:req.body.name,
         phone : req.body.phone,
-        city:req.body.city,
+        address: {
+            street : req.body.address.street,
+            city : req.body.address.city,
+        },
         cat:req.body.cat,
     })
     newClient.save().then(() => {
         res.json({result:true})
     })
 })
+
+router.delete('/:id/delete',(req,res) => {
+    const id = req.params.id;
+    Client.findByIdAndDelete(id).then((data) => {
+        res.json({result:true})
+    })
+    })
+    
+
 
 module.exports = router;
 
